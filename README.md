@@ -20,6 +20,9 @@ F-33
 
 ## Ürün Özellikleri
 
-# Product Backlog URL
+## Product Backlog URL
 https://trello.com/invite/b/SZ3vVv0s/ATTI73ce75c9a564f91393854463e6d3bc2537317617/sprint-1
 # Sprint 1
+
+## Toplantı Notları
+https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing
