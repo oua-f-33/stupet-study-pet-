@@ -81,3 +81,6 @@ Alınan kararlar: Kullanıcı temel sayfalarının tasarımları oluşturulmuş,
   - Ekip üyelerince bir çok farklı ve orijinal proje fikir ortaya atıldı, proje fikirlerinin çok ve uygulanabilir olmaları karar vermeyi ve brainstorming sürecinin uzamasına sebep oldu, bu süreç daha kısa tutulmalıydı.
   - Genel anlamda ekibin biribiriyle iletişimi, bilgi alışverişi ve farklı fikirlere açık olması her ekip üyesi için olumlu noktalardan biri olduğu tespit edildi ve ilerleyen süreç boyunca bu durumunun devam etmesi beklenmektedir.
 
+- **Burndown Chart:**
+ <img src = "https://github.com/oua-f-33/proje/assets/77845105/8a7687f8-2ef2-4c36-8c7f-91a719088a9a" width=50% height=50%>
+
