@@ -36,7 +36,7 @@ https://trello.com/invite/b/SZ3vVv0s/ATTI73ce75c9a564f91393854463e6d3bc253731761
 
 - **Puan tamamlama mantığı**:Story pointler, sprint boyunca yapılacak her bir iş açın ekip üyeleri arasında ayrı ayru oylama yapılarak belirlenmiştir. Puanlama işlemi için Treollo'nun story point eklentisi kullanılmıştır.
   
-- **Daily Scrum**: Daily Scrum toplantıları discord üzerinden ortalama iki günde bir olacak şekilde interaktif olarak gerçekleştirilmiştir. Toplantı notları kısmında toplantılara dair detaylar paylaşılmıştır: [Toplantı Notları](https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing)
+- **Daily Scrum**: Daily Scrum toplantıları discord üzerinden ortalama iki günde bir olacak şekilde interaktif olarak gerçekleştirilmiştir. Toplantı notları kısmında toplantılara dair detaylar paylaşılmıştır: **[Toplantı Notları](https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing)**
 
 - **Sprint board update**: Sprint board screenshotları:
   ![image](https://github.com/oua-f-33/proje/assets/77845105/f96bd3cb-49ef-4d0a-b384-ffafca41d84f)
