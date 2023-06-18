@@ -77,7 +77,7 @@ Alınan kararlar: Kullanıcı temel sayfalarının tasarımları oluşturulmuş,
    - Ceyda Depeharman
 
 - **Sprint Retrospective:**
-- Sprint1'in ekibin büyük çoğunluğunun final haftasına denk gelmesi ekibi ve işleyisi biraz yavaşlattı bu açığı kapatatabilmek adına sonraki sprintlerde herkesin daha aktif olması beklenmektedir.
-- Ekip üyelerince bir çok farklı ve orijinal proje fikir ortaya atıldı, proje fikirlerinin çok ve uygulanabilir olmaları karar vermeyi ve brainstorming sürecinin uzamasına sebep oldu, bu süreç daha kısa tutulmalıydı.
-- Genel anlamda ekibin biribiriyle iletişimi, bilgi alışverişi ve farklı fikirlere açık olması her ekip üyesi için olumlu noktalardan biri olduğu tespit edildi ve ilerleyen süreç boyunca bu durumunun devam etmesi beklenmektedir.
+  - Sprint1'in ekibin büyük çoğunluğunun final haftasına denk gelmesi ekibi ve işleyisi biraz yavaşlattı bu açığı kapatatabilmek adına sonraki sprintlerde herkesin daha aktif olması beklenmektedir.
+  - Ekip üyelerince bir çok farklı ve orijinal proje fikir ortaya atıldı, proje fikirlerinin çok ve uygulanabilir olmaları karar vermeyi ve brainstorming sürecinin uzamasına sebep oldu, bu süreç daha kısa tutulmalıydı.
+  - Genel anlamda ekibin biribiriyle iletişimi, bilgi alışverişi ve farklı fikirlere açık olması her ekip üyesi için olumlu noktalardan biri olduğu tespit edildi ve ilerleyen süreç boyunca bu durumunun devam etmesi beklenmektedir.
 
