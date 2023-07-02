@@ -36,7 +36,7 @@ https://trello.com/invite/b/SZ3vVv0s/ATTI73ce75c9a564f91393854463e6d3bc253731761
   
 - **Sprint içinde tamamlanması tahmin edilen puan**: 17 Puan
 
-- **Puan tamamlama mantığı**: Story pointler, sprint boyunca yapılacak her bir iş açın ekip üyeleri arasında ayrı ayru oylama yapılarak belirlenmiştir. Puanlama işlemi için Treollo'nun story point eklentisi kullanılmıştır.
+- **Puan tamamlama mantığı**: Story pointler, sprint boyunca yapılacak her bir iş için ekip üyeleri arasında ayrı ayrı oylama yapılarak belirlenmiştir. Puanlama işlemi için Treollo'nun story point eklentisi kullanılmıştır.
   
 - **Daily Scrum**: Daily Scrum toplantıları discord üzerinden ortalama iki günde bir olacak şekilde interaktif olarak gerçekleştirilmiştir. Toplantı notları kısmında toplantılara dair detaylar paylaşılmıştır: **[Toplantı Notları](https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing)**
 
@@ -49,7 +49,7 @@ https://trello.com/invite/b/SZ3vVv0s/ATTI73ce75c9a564f91393854463e6d3bc253731761
 - Login Page:
  - <img src = "https://github.com/oua-f-33/proje/assets/77845105/381b6066-7207-4d28-bc7d-51f35f05ab9f" width=30% height=30%>
 - Regiter Page:
- - <img src = "https://github.com/oua-f-33/proje/assets/77845105/313a978d-903d-4d12-8330-7b9da4a044ec" width=30% height=30%>
+ - <img src = "https://github.com/oua-f-33/proje/assets/77845105/f61fabec-3d1b-4208-970f-01264684af1a" width=30% height=30%>
 - Home Page:
  - <img src = "https://github.com/oua-f-33/proje/assets/77845105/fb6ae885-e904-4be4-a541-699b17d8e29b" width=30% height=30%>
 - Home Page pop-up:
@@ -85,4 +85,59 @@ Alınan kararlar: Kullanıcı temel sayfalarının tasarımları oluşturulmuş,
 
 - **Burndown Chart:**
  <img src = "https://github.com/oua-f-33/proje/assets/77845105/8a7687f8-2ef2-4c36-8c7f-91a719088a9a" width=50% height=50%>
+ 
+## Product Backlog URL
+https://trello.com/b/lzoQIuuL/f33-sprint-2
+
+# Sprint 2
+- **Sprint Notu**: Sprint2 dahilinde projenin UI kodlarının yazılması planlanmaktadır.
+  
+- **Sprint içinde tamamlanması tahmin edilen puan**: 36 Puan
+
+- **Puan tamamlama mantığı**: Story pointler, sprint boyunca yapılacak her bir iş için product owner tarafından belirlenmiştir. Puanlama işlemi için Treollo'nun story point eklentisi kullanılmıştır.
+  
+- **Daily Scrum**: Daily Scrum toplantıları discord ve whatsapp üzerinden gerçekleştirilmiştir. Whatsapp da alınan önemli kararların ekran görüntüleri toplantı notlarına eklenmiştir.. Toplantı notları kısmında toplantılara dair detaylar paylaşılmıştır: **[Toplantı Notları](https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing)**
+
+- **Sprint board update**: Sprint board screenshotları:
+ ![image](https://github.com/oua-f-33/proje/assets/77845105/e65d6051-b9ed-4641-a4cf-9bbee258e591)
+
+
+**Ürün Durumu**: Ekran görüntüleri:
+
+- Login Page:
+ - <img src = "https://github.com/oua-f-33/proje/assets/77845105/c867b2ef-38c7-48ab-af83-fa41195ece5d" width=30% height=30%>
+- Regiter Page:
+ - <img src = "https://github.com/oua-f-33/proje/assets/77845105/d62a0165-e117-4a10-8887-7bfd2365eab5" width=30% height=30%>
+- Home Page:
+ - <img src = "https://github.com/oua-f-33/proje/assets/77845105/26bc4020-cc87-49b8-9692-c8ee44af5540" width=30% height=30%>
+- Home Page pop-up:
+ - <img src = " " width=30% height=30%>
+- Analiz Page:
+ - <img src = " " width=30% height=30%>
+- Analiz Page1:
+ - <img src = " " width=30% height=30%>
+- Analiz Page2:
+ - <img src = " " width=30% height=30%>
+- Profile Page:
+- <img src = " " width=30% height=30%>
+- Profile Page Tasarım2:
+ - <img src = " " width=30% height=30%>
+- Edit Profile Page:
+ -  <img src = " " width=30% height=30%>
+ 
+- **Sprint Review**: 
+Alınan kararlar: Kullanıcı temel sayfalarının UI kodlaması yapılmış, backend üzerine tartışılmıştır.
+  - Sprint Review katılımcıları:
+   - Ahmet Melik Alihocagil
+   - Zeliha Kızılkaya
+   - Hikmet Topak 
+   - Gökçe Aycı 
+   - Ceyda Depeharman
+
+- **Sprint Retrospective:**
+  - Sprint2 için gerek bayram tatili gerek ekip üyelerinin final/bütünleme sınavları sebebiyle interaktif toplantılar aksamış dolayısıyla projenin ilerleyişi de olumsuz etkilemmiştir. Gelecek sprint için ekip üyelerinin daha aktif olması beklenmektedir.
+  - Daha hızlı kararlar alabilmek ve hızlı bir şekilde ilerleyebilmek adına ekip üyelerinin mesajlara olabildiğince kısa sürede cevap vermesi beklenmektedir.
+
+- **Burndown Chart:**
+ <img src = "https://github.com/oua-f-33/proje/assets/77845105/50064849-dcdf-485e-9c05-bc38f3e48a85" width=50% height=50%>
 
