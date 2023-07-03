@@ -99,7 +99,7 @@ https://trello.com/b/lzoQIuuL/f33-sprint-2
 - **Daily Scrum**: Daily Scrum toplantıları discord ve whatsapp üzerinden gerçekleştirilmiştir. Whatsapp da alınan önemli kararların ekran görüntüleri toplantı notlarına eklenmiştir.. Toplantı notları kısmında toplantılara dair detaylar paylaşılmıştır: **[Toplantı Notları](https://docs.google.com/document/d/1GLPzij74af6KO64UVuXZnkMik6LS6BBCPYart3XEXPg/edit?usp=sharing)**
 
 - **Sprint board update**: Sprint board screenshotları:
- ![image](https://github.com/oua-f-33/proje/assets/77845105/e65d6051-b9ed-4641-a4cf-9bbee258e591)
+ ![image](https://github.com/oua-f-33/proje/assets/77845105/fc623fd2-290f-412c-afda-e40e65319f65)
 
 
 **Ürün Durumu**: Ekran görüntüleri:
@@ -126,7 +126,7 @@ https://trello.com/b/lzoQIuuL/f33-sprint-2
  -  <img src = " " width=30% height=30%>
  
 - **Sprint Review**: 
-Alınan kararlar: Kullanıcı temel sayfalarının UI kodlaması yapılmış, backend üzerine tartışılmıştır.
+Alınan kararlar: Kullanıcı temel sayfalarının UI kodlamasının yapılması planlanmış fakat bazı aksaklıklardan dolayı sadece home page, login page ve register page'in UI kodlaması tamamlanmış, profil page için UI güncellenmesi yapılmış ve  backend üzerine tartışılmıştır.
   - Sprint Review katılımcıları:
    - Ahmet Melik Alihocagil
    - Zeliha Kızılkaya
@@ -139,5 +139,5 @@ Alınan kararlar: Kullanıcı temel sayfalarının UI kodlaması yapılmış, ba
   - Daha hızlı kararlar alabilmek ve hızlı bir şekilde ilerleyebilmek adına ekip üyelerinin mesajlara olabildiğince kısa sürede cevap vermesi beklenmektedir.
 
 - **Burndown Chart:**
- <img src = "https://github.com/oua-f-33/proje/assets/77845105/50064849-dcdf-485e-9c05-bc38f3e48a85" width=50% height=50%>
+ <img src = "https://github.com/oua-f-33/proje/assets/77845105/8d2107c9-7a3a-423c-b44e-4b5cc83968f2" width=50% height=50%>
 
