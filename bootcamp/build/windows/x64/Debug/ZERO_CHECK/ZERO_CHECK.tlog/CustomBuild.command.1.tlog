@@ -1,0 +1,10 @@
+^C:\USERS\USER\DESKTOP\PROJE-MAIN\BOOTCAMP\BUILD\WINDOWS\CMAKEFILES\7C1AC32CE0EB2AB36411FE78A0DFEB7B\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/USER/Desktop/proje-main/bootcamp/windows -BC:/Users/USER/Desktop/proje-main/bootcamp/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/USER/Desktop/proje-main/bootcamp/build/windows/bootcamp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
