@@ -1,30 +1,15 @@
-import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stupet/color/color_theme.dart';
-import 'package:stupet/screen/analiz.dart';
-import 'package:stupet/screen/kayit.dart';
-import 'package:stupet/screen/konuanalizi.dart';
-
-import 'package:stupet/screen/selectedTYT_AYT.dart';
+import 'package:stupet/screen/registerPage.dart';
 import 'package:stupet/screen/timer.dart';
 import 'package:flutter/material.dart';
-import 'package:stupet/screen/todo.dart';
+import 'package:stupet/screen/withoutTimer.dart';
 
-import 'cokyakinda.dart';
-import 'konuTakip.dart';
-
-class HomePage extends StatefulWidget {
+class WithoutRegister extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WithoutRegisterState createState() => _WithoutRegisterState();
 }
 
-class _HomePageState extends State<HomePage> {
-
-
-
-
-
+class _WithoutRegisterState extends State<WithoutRegister> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -33,14 +18,22 @@ class _HomePageState extends State<HomePage> {
       if (index == 1) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => kayit()),
+          MaterialPageRoute(builder: (context) => Register()),
         );
       } else {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => WithoutRegister()),
         );
       }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+
     });
   }
 
@@ -104,8 +97,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => selectedTYT_AYT()),
+                          MaterialPageRoute(builder: (context) => Register()),
                         );
                       },
                     ),
@@ -141,12 +133,13 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  AnalizPage()), //analiz sayfasına bağlanacak
+                                  Register()), //analiz sayfasına bağlanacak
                         );
                       },
                     ),
                   ),
                 ),
+
 
               ],
             ),
@@ -182,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => todo()),
+                          MaterialPageRoute(builder: (context) => Register()),
                         );
                       },
                     ),
@@ -216,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TimerPage()),
+                          MaterialPageRoute(builder: (context) => WithoutTimerPage()),
                         );
                       },
                     ),
@@ -232,36 +225,33 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: ColorTheme().antiqueWhite.withOpacity(0.9),
-                        minimumSize: Size(double.infinity, 200),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.checklist_outlined,
-                            size: 30,
-                          ), // İstediğiniz bir icon
-                          SizedBox(width: 8.0),
-                          Text(
-                            'Konu\nTakibi',
-                            style: TextStyle(fontSize: 25),
+                        style: ElevatedButton.styleFrom(
+                          primary: ColorTheme().antiqueWhite.withOpacity(0.9),
+                          minimumSize: Size(double.infinity, 200),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
                           ),
-                        ],
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  KonuTakip()), //analiz sayfasına bağlanacak
-                        );
-                      },
-                    ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.checklist_outlined,
+                              size: 30,
+                            ), // İstediğiniz bir icon
+                            SizedBox(width: 8.0),
+                            Text(
+                              'Konu\nTakibi',
+                              style: TextStyle(fontSize: 25),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Register()),
+                          );
+                        }),
                   ),
                 ),
                 Expanded(
@@ -278,9 +268,8 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
                           Icon(
-                            Icons.question_mark,
+                            Icons.question_mark_outlined,
                             size: 30,
                           ), // İstediğiniz bir icon
                           SizedBox(width: 8.0),
@@ -290,23 +279,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      onPressed: () {
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ScrollableCardPage()), //analiz sayfasına bağlanacak
-                        );
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ),
               ],
             ),
           ),
-
-
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:stupet/color/color_theme.dart';
+import 'package:stupet/screen/AYT/ayt_sayisal_konulari.dart';
 
 class aytMatematik extends StatelessWidget {
   @override
@@ -9,7 +10,33 @@ class aytMatematik extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-
+        appBar: AppBar(
+          backgroundColor: Colors.white.withOpacity(0.75),
+          leading: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back_ios_new_outlined),
+                color: ColorTheme().blackbean,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => aytSayisal()),
+                  );
+                },
+              ),
+            ],
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Image.asset(
+                'assets/logo.png',
+                height: 100,
+              ),
+            ],
+          ),
+        ),
         body: QuestionList(),
       ),
     );
@@ -31,30 +58,31 @@ class _QuestionListState extends State<QuestionList> {
     fetchDropdownOptions();
     for (int i = 1; i <= 30; i++) {
       questionWidgets.add(QuestionWidget(i));
-
     }
     fetchAllResults();
   }
 
   Future<void> fetchDropdownOptions() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('AYT Matematik').get();
-    List<String> dropdownOptions = snapshot.docs.map((DocumentSnapshot document) {
-
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('AYT Matematik').get();
+    List<String> dropdownOptions =
+        snapshot.docs.map((DocumentSnapshot document) {
       return document.get('konu') as String;
     }).toList();
 
     setState(() {
       for (var questionWidget in questionWidgets) {
         questionWidget.dropdownOptions = dropdownOptions;
-
-
       }
     });
   }
 
   Future<void> fetchAllResults() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('Sonuç AYT Matematik').get();
-    List<Map<String, dynamic>> results = snapshot.docs.map((DocumentSnapshot document) {
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('Sonuç AYT Matematik')
+        .get();
+    List<Map<String, dynamic>> results =
+        snapshot.docs.map((DocumentSnapshot document) {
       return document.data() as Map<String, dynamic>;
     }).toList();
 
@@ -84,7 +112,8 @@ class _QuestionListState extends State<QuestionList> {
   void printAllResults() {
     print('Tüm Sonuçlar:');
     for (var result in allResults) {
-      print('Soru ${result['Soru Sayısı']}: ${result['konu']} ${result['Sonuç AYT Matematik']}');
+      print(
+          'Soru ${result['Soru Sayısı']}: ${result['konu']} ${result['Sonuç AYT Matematik']}');
     }
   }
 
@@ -92,7 +121,10 @@ class _QuestionListState extends State<QuestionList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(padding: EdgeInsets.only(top:80,)),
+        Padding(
+            padding: EdgeInsets.only(
+          top: 50,
+        )),
         Row(
           children: [
             Padding(
@@ -112,7 +144,6 @@ class _QuestionListState extends State<QuestionList> {
             },
           ),
         ),
-
         ElevatedButton(
           onPressed: () {
             List<Map<String, dynamic>> resultData = [];
@@ -134,23 +165,35 @@ class _QuestionListState extends State<QuestionList> {
             allResults.addAll(resultData);
 
             for (int i = 0; i < questionWidgets.length; i++) {
-              print('Soru ${i + 1}: ${questionWidgets[i].selectedOption} ${questionWidgets[i].greenButtonSelected ? '1' : '0'}');
+              print(
+                  'Soru ${i + 1}: ${questionWidgets[i].selectedOption} ${questionWidgets[i].greenButtonSelected ? '1' : '0'}');
             }
           },
+          style: ElevatedButton.styleFrom(
+              primary: ColorTheme().khmerCurry,
+              onPrimary: Colors.white,
+              minimumSize: Size(180, 40)),
           child: Text('Kaydet'),
         ),
-
         ElevatedButton(
           onPressed: () {
             analyzeResults();
           },
-          child: Text('Doğru İşaretlenmiş Soruları Göster'),
+          style: ElevatedButton.styleFrom(
+              primary: ColorTheme().antiqueWhite,
+              onPrimary: Colors.white,
+              minimumSize: Size(180, 40)),
+          child: Text('Doğru İşaretlenmiş\nSoruları Göster'),
         ),
         ElevatedButton(
           onPressed: () {
             fetchAllResults();
             printAllResults();
           },
+          style: ElevatedButton.styleFrom(
+              primary: ColorTheme().khmerCurry,
+              onPrimary: Colors.white,
+              minimumSize: Size(180, 40)),
           child: Text('Tüm Sonuçları Göster'),
         ),
       ],
@@ -188,19 +231,33 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
             ),
           ),
-          DropdownButton<String>(
-            value: widget.selectedOption,
-            items: widget.dropdownOptions.map((option) {
-              return DropdownMenuItem<String>(
-                value: option,
-                child: Text(option),
-              );
-            }).toList(),
-            onChanged: (value) {
-              setState(() {
-                widget.selectedOption = value;
-              });
-            },
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 200.0),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: widget.selectedOption,
+                items: widget.dropdownOptions.map((option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        option.length > 25
+                            ? option.substring(0, 25) + "..."
+                            : option,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    widget.selectedOption = value;
+                  });
+                },
+                isExpanded: true,
+              ),
+            ),
           ),
           IconButton(
             onPressed: () {

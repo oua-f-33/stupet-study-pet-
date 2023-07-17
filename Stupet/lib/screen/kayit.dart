@@ -1,14 +1,49 @@
-import 'package:stupet/color/color_theme.dart';
-import 'package:stupet/screen/homePage.dart';
-import 'package:stupet/screen/profileSettingsPage.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../color/color_theme.dart';
+import 'homePage.dart';
+
+
+class kayit extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfilePagee(),
+    );
+  }
+}
+
+class ProfilePagee extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePagee> {
+  String name = "";
+
+  @override
+  void initState() {
+    super.initState();
+    fetchProfileData();
+  }
+
+  void fetchProfileData() async {
+    final profileSnapshot = await FirebaseFirestore.instance.collection('profile_info').doc('your_user_id_here').get();
+    final data = profileSnapshot.data();
+    setState(() {
+      name = data?['name'] ?? '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         backgroundColor: Colors.white.withOpacity(0.75),
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,7 +77,10 @@ class ProfilePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfileSettingsPage(),
+                  builder: (context) => EditProfilePage(
+                    name: name,
+                    onProfileUpdated: updateProfile,
+                  ),
                 ),
               );
             },
@@ -55,7 +93,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Profile Photo
+
               Container(
                 width: 100,
                 height: 100,
@@ -72,17 +110,9 @@ class ProfilePage extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                 ),
               ),
-              SizedBox(height: 16),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  'Kullanıcı Adı',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Text(
+                "İsim: $name",
+                style: TextStyle(fontSize: 24),
               ),
               SizedBox(height: 16),
               // Profession and Code Section
@@ -212,48 +242,32 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(height: 8),
                     Row(
                       children: [
-                        buildLessonProgress('Ders 1\n', 45),
+                        buildLessonProgress('Fizik\n', 45),
                         Text("\n\n%45")
                       ],
                     ),
                     Row(
                       children: [
-                        buildLessonProgress('Ders 2\n', 10),
+                        buildLessonProgress('Matematik 2\n', 10),
                         Text("\n\n%10")
                       ],
                     ),
                   ],
                 ),
               ),
+
             ],
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          height: 56,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                onPressed: () {
-                  // Start a new session
-                },
-                child: Text(
-                  'Yeni Seans Başlat',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: ColorTheme().khmerCurry.withOpacity(0.8)),
-                ),
-              ),
-            ],
-          ),
-        ),
+        )
+
       ),
     );
   }
 
+
   Widget buildLessonProgress(String lesson, int progress) {
+
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -281,5 +295,161 @@ class ProfilePage extends StatelessWidget {
     } else {
       throw 'Could not launch $url';
     }
+  }
+  void updateProfile(String newName) {
+    setState(() {
+      name = newName;
+    });
+  }
+}
+
+class EditProfilePage extends StatefulWidget {
+  final String name;
+  final Function(String) onProfileUpdated;
+
+  EditProfilePage({required this.name, required this.onProfileUpdated});
+
+  @override
+  _EditProfilePageState createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  late TextEditingController nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController(text: widget.name);
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        backgroundColor: Colors.white.withOpacity(0.75),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_outlined),
+              color: ColorTheme().blackbean,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/logo.png',
+              height: 100,
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            color: ColorTheme().blackbean,
+            onPressed: () {
+              ;
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(1.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: ColorTheme().border,
+                  width: 2,
+                ),
+              ),
+              child: CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.transparent,
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.asset(
+                    'assets/maskot.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: "İsim"),
+            ),
+            Text(
+              'Hedefler',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Hedef Üniversite',
+              ),
+            ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Hedef Bölüm',
+              ),
+            ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Hedef TYT Neti',
+              ),
+            ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Hedef AYT Neti',
+              ),
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: ColorTheme().khmerCurry,
+                ),
+              child: Text("Değişiklikleri Kaydet"),
+              onPressed: () {
+                String newName = nameController.text;
+                widget.onProfileUpdated(newName);
+                updateFirebaseProfile(newName);
+                Navigator.pop(context);
+              }
+
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void updateFirebaseProfile(String newName) async {
+    await FirebaseFirestore.instance.collection('profil').doc('kullanici').update({
+      'isim': newName,
+    });
   }
 }

@@ -1,7 +1,6 @@
-import 'package:stupet/color/color_theme.dart';
-import 'package:stupet/screen/homePage.dart';
-import 'package:stupet/screen/registerPage.dart';
 import 'package:flutter/material.dart';
+import 'package:stupet/color/color_theme.dart';
+import 'package:stupet/screen/registerPage.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -29,7 +28,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
     OnboardingPage(
       image: 'assets/maskot.png',
-      title: 'Stupet',
+      title: 'Stupet (Study Pet)',
       description: "Artık Stupet ile YKS'ye hazırlanmak daha kolay",
     ),
   ];
@@ -52,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             },
           ),
           Positioned(
-            bottom: 50.0,
+            bottom: 150.0,
             left: 0,
             right: 0,
             child: Row(
@@ -61,8 +60,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           Positioned(
-            bottom: 30.0,
-            right: 20.0,
+            bottom: 120.0,
+            right: 50.0,
             child: FloatingActionButton(
               backgroundColor: ColorTheme().khmerCurry,
               hoverColor: ColorTheme().antiqueWhite,
@@ -82,6 +81,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: _currentPage < _pages.length - 1
                   ? Icon(Icons.arrow_forward_ios)
                   : Icon(Icons.done),
+            ),
+          ),
+          Positioned(
+            top: 30.0,
+            right: 20.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Register()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                primary: ColorTheme().antiqueWhite,
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.arrow_forward_ios),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'Atla',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

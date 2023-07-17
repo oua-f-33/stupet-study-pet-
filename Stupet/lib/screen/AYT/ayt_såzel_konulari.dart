@@ -6,19 +6,20 @@ import 'package:stupet/color/color_theme.dart';
 import 'package:stupet/screen/AYT/ayt_biyoloji.dart';
 import 'package:stupet/screen/AYT/ayt_cografya.dart';
 import 'package:stupet/screen/AYT/ayt_edebiyat.dart';
+import 'package:stupet/screen/AYT/ayt_felsefe.dart';
 import 'package:stupet/screen/AYT/ayt_fizik.dart';
 import 'package:stupet/screen/AYT/ayt_kimya.dart';
 import 'package:stupet/screen/AYT/ayt_matematik.dart';
 import 'package:stupet/screen/AYT/ayt_tarih.dart';
 import 'package:stupet/screen/selectedTYT_AYT.dart';
 
-class aytEsitAgirlik extends StatefulWidget {
-  const aytEsitAgirlik({Key? key}) : super(key: key);
+class aytSozel extends StatefulWidget {
+  const aytSozel({Key? key}) : super(key: key);
   @override
-  State<aytEsitAgirlik> createState() => _aytEsitAgirlikState();
+  State<aytSozel> createState() => _aytSozelState();
 }
 
-class _aytEsitAgirlikState extends State<aytEsitAgirlik> {
+class _aytSozelState extends State<aytSozel> {
   String dailyQuote = '';
 
   @override
@@ -82,14 +83,14 @@ class _aytEsitAgirlikState extends State<aytEsitAgirlik> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => aytMatematik()),
+                      MaterialPageRoute(builder: (context) => aytEdebiyat()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
                     minimumSize: Size(100, 60),
                   ),
-                  child: Text('Matematik'),
+                  child: Text('Edebiyat'),
                 ),
                 SizedBox(width: 16),
                 ElevatedButton(
@@ -103,7 +104,7 @@ class _aytEsitAgirlikState extends State<aytEsitAgirlik> {
                     primary: ColorTheme().antiqueWhite,
                     minimumSize: Size(100, 60),
                   ),
-                  child: Text('Tarih'),
+                  child: Text('Tarih-2'),
                 ),
               ],
             ),
@@ -130,14 +131,14 @@ class _aytEsitAgirlikState extends State<aytEsitAgirlik> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => aytEdebiyat()),
+                      MaterialPageRoute(builder: (context) => aytFelsefe()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
                     minimumSize: Size(100, 60),
                   ),
-                  child: Text('Edebiyat'),
+                  child: Text('Felsefe'),
                 ),
               ],
             ),

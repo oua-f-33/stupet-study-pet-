@@ -3,6 +3,7 @@ import 'package:stupet/color/color_theme.dart';
 import 'package:stupet/screen/loginPage.dart';
 import 'package:stupet/screen/splashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:stupet/screen/withoutRegister.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   late String email, password;
+  bool _obscureText = true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
@@ -92,6 +94,7 @@ class _RegisterState extends State<Register> {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: ListTile(
                             title: TextFormField(
+                              obscureText: _obscureText,
                               validator: (input) {
                                 if (input!.length < 6) {
                                   return 'Şifre en az 6 karakter olmalı';
@@ -100,15 +103,21 @@ class _RegisterState extends State<Register> {
                               },
                               onSaved: (input) => password = input!,
                               decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                                    ),
+                                  ),
                                   hintText: "Parola",
                                   icon: Icon(Icons.lock_outline),
                                   border: InputBorder.none),
                             ),
-                            trailing: IconButton(
-                                icon: Icon(Icons.remove_red_eye),
-                                onPressed: () {
-                                  setState(() {});
-                                }),
+
                           ),
                         ),
                       ),
@@ -123,16 +132,23 @@ class _RegisterState extends State<Register> {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: ListTile(
                             title: TextFormField(
+                              obscureText: _obscureText,
                               decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                                    ),
+                                  ),
                                   hintText: "Parolayı tekrar girin",
                                   icon: Icon(Icons.lock_outline),
                                   border: InputBorder.none),
                             ),
-                            trailing: IconButton(
-                                icon: Icon(Icons.remove_red_eye),
-                                onPressed: () {
-                                  setState(() {});
-                                }),
+
                           ),
                         ),
                       ),
@@ -240,7 +256,7 @@ class _RegisterState extends State<Register> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        SplashScreen()),
+                                                        WithoutRegister()),
                                               );
                                             },
                                             child: Icon(
@@ -314,7 +330,6 @@ class _RegisterState extends State<Register> {
     );
   }
 
-
   void signUp() async {
     final formState = _formKey.currentState!;
     if (formState.validate()) {
@@ -326,7 +341,11 @@ class _RegisterState extends State<Register> {
         );
         _showSuccessDialog();
         print(user.user!.uid);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);
+        Navigator.push(
+          context,
+
+          MaterialPageRoute(builder: (context) => SplashScreen()),
+        );
         // Kayıt başarılı, kullanıcıyı giriş ekranına yönlendirin veya gerekli işlemleri yapın.
       } catch (e) {
         print(e.toString());
@@ -340,7 +359,8 @@ class _RegisterState extends State<Register> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Tebrikler"),
-          content: Text(' $email kullanıcı adı ile Stupet hesabı oluşturdunuz.'),
+          content:
+              Text(' $email kullanıcı adı ile Stupet hesabı oluşturdunuz.'),
           actions: <Widget>[
             ElevatedButton(
               child: Text('Tamam'),

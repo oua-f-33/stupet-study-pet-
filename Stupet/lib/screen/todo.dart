@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stupet/color/color_theme.dart';
+import 'package:stupet/screen/homePage.dart';
 
 import 'model_todo.dart';
 
@@ -32,18 +34,29 @@ class _todoState extends State<todo> {
       home: Scaffold(
           backgroundColor: Colors.grey.shade200,
           appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.grey ,
+            backgroundColor: Colors.white.withOpacity(0.75),
+            leading: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios_new_outlined),
+                  color: ColorTheme().blackbean,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
+                ),
+              ],
+            ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  child: Image.asset(
+                Image.asset(
                   'assets/logo.png',
+                  height: 100,
                 ),
-                )
               ],
             ),
           ),
@@ -68,7 +81,7 @@ class _todoState extends State<todo> {
                                 ),
                               ),
                             ),
-                            for( ToDo todoo in _foundToDo.reversed)
+                            for (ToDo todoo in _foundToDo.reversed)
                               to_do_items(
                                 toDo: todoo,
                                 onToDoChange: _handleToDoChange,
@@ -86,11 +99,10 @@ class _todoState extends State<todo> {
                     children: [
                       Expanded(
                         child: Container(
-                          margin: EdgeInsets.only(
-                              bottom: 20,
-                              right: 20,
-                              left: 20),
-                          padding: EdgeInsets.symmetric(horizontal:  20, vertical: 5),
+                          margin:
+                              EdgeInsets.only(bottom: 20, right: 20, left: 20),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             boxShadow: const [
@@ -104,7 +116,7 @@ class _todoState extends State<todo> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextField(
-                            controller:  _toDoController,
+                            controller: _toDoController,
                             decoration: InputDecoration(
                               hintText: 'Yeni bir TO-DO ekle',
                               border: InputBorder.none,
@@ -116,13 +128,17 @@ class _todoState extends State<todo> {
                         padding: EdgeInsets.only(bottom: 10),
                         margin: EdgeInsets.only(bottom: 20, right: 20),
                         child: ElevatedButton(
-                          child: Text('+', style: TextStyle(fontSize: 40,),),
+                          child: Text(
+                            '+',
+                            style: TextStyle(
+                              fontSize: 40,
+                            ),
+                          ),
                           onPressed: () {
                             _addToDoItem(_toDoController.text);
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-
+                            primary: ColorTheme().khmerCurry,
                             elevation: 10,
                           ),
                         ),
@@ -136,23 +152,18 @@ class _todoState extends State<todo> {
                 image: DecorationImage(
                     image: AssetImage('assets/background.png'),
                     colorFilter: ColorFilter.mode(
-                        Colors.white.withOpacity(0.45),
-                        BlendMode.dstOut)
-                )
-            ),
-          )
-      ),
+                        Colors.white30.withOpacity(0.45), BlendMode.dstOut))),
+          )),
     );
   }
 
-  void _handleToDoChange(ToDo toDo){
+  void _handleToDoChange(ToDo toDo) {
     setState(() {
       toDo.isDone = !toDo.isDone;
     });
-
   }
 
-  void _deleteToDoItem(String id){
+  void _deleteToDoItem(String id) {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
     });
@@ -167,29 +178,27 @@ class _todoState extends State<todo> {
     _toDoController.clear();
   }
 
-  void _runFilter(String enteredKeyWord){
+  void _runFilter(String enteredKeyWord) {
     List<ToDo> result = [];
-    if(enteredKeyWord.isEmpty){
+    if (enteredKeyWord.isEmpty) {
       result = todosList;
-    }else{
+    } else {
       result = todosList
           .where((item) => item.todoText!
-          .toLowerCase()
-          .contains(enteredKeyWord.toLowerCase()))
+              .toLowerCase()
+              .contains(enteredKeyWord.toLowerCase()))
           .toList();
     }
     setState(() {
       _foundToDo = result;
     });
-
   }
 
   Widget searchBox() {
-    return Container(padding: EdgeInsets.symmetric(horizontal: 15),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: TextField(
         onChanged: (value) => _runFilter(value),
         decoration: InputDecoration(
@@ -212,15 +221,16 @@ class _todoState extends State<todo> {
 }
 
 class to_do_items extends StatelessWidget {
-
   final ToDo toDo;
   final onToDoChange;
   final onDeleteItem;
 
-  const to_do_items({Key? key,
-    required this.toDo,
-    required this.onToDoChange,
-    required this.onDeleteItem}) : super(key: key);
+  const to_do_items(
+      {Key? key,
+      required this.toDo,
+      required this.onToDoChange,
+      required this.onDeleteItem})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +251,7 @@ class to_do_items extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             color: Colors.black,
-            decoration: toDo.isDone? TextDecoration.lineThrough : null,
+            decoration: toDo.isDone ? TextDecoration.lineThrough : null,
           ),
         ),
         trailing: Container(

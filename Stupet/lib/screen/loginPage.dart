@@ -5,43 +5,37 @@ import 'package:stupet/screen/homePage.dart';
 import 'package:stupet/color/color_theme.dart';
 import 'package:stupet/screen/registerPage.dart';
 import 'package:stupet/screen/splashScreen.dart';
-
-
+import 'package:stupet/screen/withoutRegister.dart';
 
 class LoginPage extends StatefulWidget {
+
   const LoginPage({Key? key}) : super(key: key);
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
   late String email, password;
   final formkey = GlobalKey<FormState>();
 
   final firebaseAuth = FirebaseAuth.instance;
   bool isChecked = false;
+  String _errorMessage = '';
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 
-  Future<UserCredential> _signInWithGoogle() async {
-    // Google ile giriş yapma işlemi
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser!.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    final UserCredential userCredential =
-    await firebaseAuth.signInWithCredential(credential);
-    return userCredential;
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -51,35 +45,35 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Container(
-
                     child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'Hoşgeldiniz  👋',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: ColorTheme().black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          height: 1),
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          'Hoşgeldiniz  👋',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: ColorTheme().black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.normal,
-                              height: 1),
+                        SizedBox(
+                          width: 150,
+                          child: Image.asset(
+                            'assets/logo.png',
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 150,
-                              child: Image.asset(
-                                'assets/logo.png',
-                              ),
-                            ),
-                          ],
-                        )
                       ],
-                    )),
+                    )
+                  ],
+                )),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: Form(
                   key: formkey,
                   child: Padding(
@@ -87,7 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                          padding:
+                              const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
                           child: Material(
                             borderRadius: BorderRadius.circular(8.0),
                             color: Colors.grey.withOpacity(0.2),
@@ -104,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                                   onSaved: (value) {
                                     email = value!;
                                   },
+                                  controller: _usernameController,
                                   decoration: InputDecoration(
                                       hintText: "Email",
                                       icon: Icon(Icons.alternate_email),
@@ -114,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                          padding:
+                              const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
                           child: Material(
                             borderRadius: BorderRadius.circular(8.0),
                             color: Colors.grey.withOpacity(0.2),
@@ -123,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.only(left: 12.0),
                               child: ListTile(
                                 title: TextFormField(
+                                  obscureText: _obscureText,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Lütfen şifrenizi giriniz";
@@ -131,17 +129,23 @@ class _LoginPageState extends State<LoginPage> {
                                   onSaved: (value) {
                                     password = value!;
                                   },
-                                  obscureText: true,
+                                  controller: _passwordController,
                                   decoration: InputDecoration(
+                                      suffixIcon: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        },
+                                        child: Icon(
+                                          _obscureText ? Icons.visibility : Icons.visibility_off,
+                                        ),
+                                      ),
                                       hintText: "Parola",
                                       icon: Icon(Icons.lock_outline),
                                       border: InputBorder.none),
                                 ),
-                                trailing: IconButton(
-                                    icon: Icon(Icons.remove_red_eye),
-                                    onPressed: () {
-                                      setState(() {});
-                                    }),
+
                               ),
                             ),
                           ),
@@ -169,12 +173,14 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(80, 16, 16, 16),
+                                padding:
+                                    const EdgeInsets.fromLTRB(80, 16, 16, 16),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     InkWell(
-                                      onTap: () {}, //şifremi unuttum işlemi için
+                                      onTap:
+                                          () {}, //şifremi unuttum işlemi için
                                       child: Text(
                                         "Şifremi unuttum",
                                         textAlign: TextAlign.right,
@@ -197,11 +203,10 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             height: 50,
                             width: MediaQuery.of(context).size.width,
-
-
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: ColorTheme().khmerCurry,),
+                              borderRadius: BorderRadius.circular(8),
+                              color: ColorTheme().khmerCurry,
+                            ),
                             child: Center(
                               child: Text(
                                 "Giriş",
@@ -214,19 +219,24 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+                        Text(
+                          _errorMessage,
+                          style: TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
                         Padding(padding: EdgeInsets.only(top: 25)),
                         Row(children: <Widget>[
                           Expanded(
                               child: Divider(
-                                color: ColorTheme().border,
-                                height: 50,
-                              )),
+                            color: ColorTheme().border,
+                            height: 50,
+                          )),
                           Text("Ya da"),
                           Expanded(
                               child: Divider(
-                                color: ColorTheme().border,
-                                height: 50,
-                              )),
+                            color: ColorTheme().border,
+                            height: 50,
+                          )),
                         ]),
                         Column(
                           children: [
@@ -238,11 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                                       5.0, 8.0, 14.0, 8.0),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      _signInWithGoogle().then((UserCredential userCredential) {
-                                        // Giriş başarılı, kullanıcıyı ana sayfaya yönlendirin veya gerekli işlemleri yapın.
-                                      }).catchError((e) {
-                                        print(e.message);
-                                      });
+
                                     },
                                     child: Text('Google İle Giriş Yap'),
                                   ),
@@ -290,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      SplashScreen()),
+                                                      WithoutRegister()),
                                             );
                                           },
                                           child: Icon(
@@ -312,8 +318,8 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               Padding(
-                                padding:
-                                const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    14.0, 8.0, 14.0, 8.0),
                                 child: Text(
                                   "Hesabınız yok mu?",
                                   style: TextStyle(
@@ -321,8 +327,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    14.0, 8.0, 14.0, 8.0),
                                 child: TextButton(
                                   onPressed: () {
                                     Navigator.push(
@@ -335,18 +341,16 @@ class _LoginPageState extends State<LoginPage> {
                                     'Hesap Oluşturun',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 16, color: ColorTheme().darkBlue),
+                                        fontSize: 16,
+                                        color: ColorTheme().darkBlue),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ]),
-
-
                       ],
                     ),
-
                   ),
                 ),
               )
@@ -357,21 +361,35 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
-
-
   void signIn() async {
-    if (formkey.currentState!.validate()) {
-      formkey.currentState!.save();
-      try {
-        final userResult = await firebaseAuth.signInWithEmailAndPassword(
-            email: email, password: password);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);
-        print(userResult.user!.email);
-      } catch (e) {
-        print(e.toString());
+
+    try {
+      final UserCredential userCredential =
+      await firebaseAuth.signInWithEmailAndPassword(
+        email: _usernameController.text.trim(),
+        password: _passwordController.text,
+      );
+
+      // Giriş başarılı, kullanıcıyı ana ekrana yönlendirin veya işlemleri yapın.
+      print('Giriş başarılı!');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        setState(() {
+          _errorMessage = 'Geçersiz kullanıcı adı veya şifre.';
+        });
+      } else {
+        setState(() {
+          _errorMessage = 'Giriş yapılırken bir hata oluştu.';
+        });
       }
-    } else {}
+    } catch (e) {
+      print(e.toString());
+    }
+  }
   }
 
   Container topImageContainer(double height, String topImage) {
@@ -387,13 +405,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget customSizedBox() => SizedBox(
-    height: 20,
-  );
+        height: 20,
+      );
 
   Widget customText(String text, Color color) => Text(
-    text,
-    style: TextStyle(color: color),
-  );
+        text,
+        style: TextStyle(color: color),
+      );
 
   InputDecoration customInputDecoration(String hintText) {
     return InputDecoration(
@@ -411,4 +429,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
+

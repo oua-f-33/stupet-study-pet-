@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:stupet/color/color_theme.dart';
 import 'package:stupet/screen/TYT/tyt_biyoloji.dart';
@@ -11,15 +12,22 @@ import 'package:stupet/screen/TYT/tyt_matematik.dart';
 import 'package:stupet/screen/TYT/tyt_tarih.dart';
 import 'package:stupet/screen/TYT/tyt_turkce.dart';
 import 'package:stupet/screen/selectedTYT_AYT.dart';
+import 'package:stupet/screen/veriler.dart';
 
-class TYT_Dersler extends StatefulWidget {
-  const TYT_Dersler({Key? key}) : super(key: key);
+
+
+
+
+
+class derskonuanalizi extends StatefulWidget {
+  const derskonuanalizi({Key? key}) : super(key: key);
 
   @override
-  State<TYT_Dersler> createState() => _TYT_DerslerState();
+  State<derskonuanalizi> createState() => _derskonuanaliziState();
 }
 
-class _TYT_DerslerState extends State<TYT_Dersler> {
+class _derskonuanaliziState extends State<derskonuanalizi> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +74,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => tytTurkce()),
+                      MaterialPageRoute(builder: (context) => vericekme()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -86,10 +94,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytMatematik()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().antiqueWhite,
@@ -115,8 +120,9 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => tytFizik()),
+                      MaterialPageRoute(builder: (context) => vericekme()),
                     );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().antiqueWhite,
@@ -137,10 +143,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytKimya()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
@@ -164,10 +167,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytBiyoloji()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
@@ -188,10 +188,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytTarih()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().antiqueWhite,
@@ -215,10 +212,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytCografya()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().antiqueWhite,
@@ -239,10 +233,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytFelsefe()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
@@ -266,10 +257,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytGeometri()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().khmerCurry,
@@ -288,10 +276,7 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
                 width: 120.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => tytdin()),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: ColorTheme().antiqueWhite,
@@ -314,3 +299,6 @@ class _TYT_DerslerState extends State<TYT_Dersler> {
     );
   }
 }
+
+
+

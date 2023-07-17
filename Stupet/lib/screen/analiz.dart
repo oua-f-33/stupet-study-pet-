@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stupet/color/color_theme.dart';
+import 'package:stupet/screen/homePage.dart';
+
+import 'dersderskonuanalizi.dart';
 
 class AnalizPageExamKonu extends StatefulWidget {
   const AnalizPageExamKonu({Key? key}) : super(key: key);
@@ -12,20 +16,31 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        backgroundColor: Colors.white.withOpacity(0.75),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Analiz'),
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_outlined),
+              color: ColorTheme().blackbean,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
           ],
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('lib/logo/logo.png'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset(
+              'assets/logo.png',
+              height: 100,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       body: Center(
         child: Column(
@@ -38,12 +53,15 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
                   height: 120,
                   width: 160,
                   decoration: BoxDecoration(
-                    color: Colors.red.shade400,
+                    color: ColorTheme().khmerCurry,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => derskonuanalizi()));
                     },
                     child: Text(
                       "TYT",
@@ -57,12 +75,15 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
                   height: 120,
                   width: 160,
                   decoration: BoxDecoration(
-                    color: Color(0xEF545454),
+                    color: ColorTheme().antiqueWhite,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
                     },
                     child: Text(
                       "AYT - SAYISAL",
@@ -81,12 +102,15 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
                   height: 120,
                   width: 160,
                   decoration: BoxDecoration(
-                    color: Color(0xEF545454),
+                    color: ColorTheme().antiqueWhite,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
                     },
                     child: Text(
                       "AYT - EŞİT AĞIRLIK",
@@ -100,12 +124,15 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
                   height: 120,
                   width: 160,
                   decoration: BoxDecoration(
-                    color: Colors.red.shade400,
+                    color: ColorTheme().khmerCurry,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
                     },
                     child: Text(
                       "AYT - SÖZEL",
@@ -124,15 +151,18 @@ class _AnalizPageExamKonuState extends State<AnalizPageExamKonu> {
                   height: 120,
                   width: 160,
                   decoration: BoxDecoration(
-                    color: Color(0xFFEF5454),
+                    color: ColorTheme().khmerCurry,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
                     },
                     child: Text(
-                      "AYT -D İL",
+                      "AYT -DİL",
                       style: TextStyle(
                         color: Colors.white,
                       ),

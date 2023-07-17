@@ -1,5 +1,7 @@
+import 'package:stupet/color/color_theme.dart';
 import 'package:stupet/screen/analiz.dart';
 import 'package:flutter/material.dart';
+import 'package:stupet/screen/homePage.dart';
 
 class AnalizPage extends StatefulWidget {
   const AnalizPage({Key? key}) : super(key: key);
@@ -13,68 +15,88 @@ class _AnalizPageState extends State<AnalizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        backgroundColor: Colors.white.withOpacity(0.75),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Analiz'),
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios_new_outlined),
+              color: ColorTheme().blackbean,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
           ],
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('lib/logo/logo.png'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset(
+              'assets/logo.png',
+              height: 100,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                height: 100,
-                width: 160,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEFB07D),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
-                  },
-                  child: Text(
-                    "Konu Analizi",
-                    style: TextStyle(
-                      color: Colors.white,
+      body: Container(
+        height: 550,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  height: 150,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: ColorTheme().khmerCurry,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
+                    },
+                    child: Text(
+                      "Konu Analizi",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                height: 100,
-                width: 160,
-                decoration: BoxDecoration(
-                  color: Color(0xFFEFB07D),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => AnalizPageExamKonu()));
-                  },
-                  child: Text(
-                    "Net Analizi",
-                    style: TextStyle(
-                      color: Colors.white,
+                Container(
+                  height: 150,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: ColorTheme().antiqueWhite,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalizPageExamKonu()));
+                    },
+                    child: Text(
+                      "Net Analizi",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

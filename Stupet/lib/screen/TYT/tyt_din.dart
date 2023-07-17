@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class tytDin extends StatelessWidget {
+class tytdin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
-
+        appBar: AppBar(
+          title: Text('Sorular'),
+        ),
         body: QuestionList(),
       ),
     );
@@ -29,31 +29,27 @@ class _QuestionListState extends State<QuestionList> {
   void initState() {
     super.initState();
     fetchDropdownOptions();
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 40; i++) {
       questionWidgets.add(QuestionWidget(i));
-
     }
     fetchAllResults();
   }
 
   Future<void> fetchDropdownOptions() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('TYT Din').get();
+    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('TYT Turkce').get();
     List<String> dropdownOptions = snapshot.docs.map((DocumentSnapshot document) {
-
       return document.get('konu') as String;
     }).toList();
 
     setState(() {
       for (var questionWidget in questionWidgets) {
         questionWidget.dropdownOptions = dropdownOptions;
-
-
       }
     });
   }
 
   Future<void> fetchAllResults() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('Sonuç TYT Din').get();
+    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('Sonuc Deneme').get();
     List<Map<String, dynamic>> results = snapshot.docs.map((DocumentSnapshot document) {
       return document.data() as Map<String, dynamic>;
     }).toList();
@@ -65,26 +61,37 @@ class _QuestionListState extends State<QuestionList> {
 
   void analyzeResults() {
     List<Map<String, dynamic>> correctResults = [];
+    List<Map<String, dynamic>> wrongResults = [];
 
     for (var result in allResults) {
-      if (result['Değer'] == '1') {
+      if (result['result'] == '1') {
         correctResults.add({
-          'Soru Sayısı': result['Soru Sayısı'],
-          'konu': result['konu'],
+          'questionNumber': result['questionNumber'],
+          'selectedOption': result['selectedOption'],
+        });
+      } else {
+        wrongResults.add({
+          'questionNumber': result['questionNumber'],
+          'selectedOption': result['selectedOption'],
         });
       }
     }
 
     print('Doğru İşaretlenmiş Sorular:');
     for (var result in correctResults) {
-      print('Soru ${result['Soru Sayısı']}: ${result['konu']}');
+      print('Soru ${result['questionNumber']}: ${result['selectedOption']}');
+    }
+
+    print('Yanlış İşaretlenmiş Sorular:');
+    for (var result in wrongResults) {
+      print('Soru ${result['questionNumber']}: ${result['selectedOption']}');
     }
   }
 
   void printAllResults() {
     print('Tüm Sonuçlar:');
     for (var result in allResults) {
-      print('Soru ${result['Soru Sayısı']}: ${result['konu']} ${result['Sonuç TYT Din']}');
+      print('Soru ${result['questionNumber']}: ${result['selectedOption']} ${result['result']}');
     }
   }
 
@@ -92,18 +99,6 @@ class _QuestionListState extends State<QuestionList> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(padding: EdgeInsets.only(top:80,)),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Text(
-                'Din Kültürü Soru Konu Dağılımı',
-                style: TextStyle(fontSize: 15.0),
-              ),
-            ),
-          ],
-        ),
         Expanded(
           child: ListView.builder(
             itemCount: questionWidgets.length,
@@ -112,21 +107,20 @@ class _QuestionListState extends State<QuestionList> {
             },
           ),
         ),
-
         ElevatedButton(
           onPressed: () {
             List<Map<String, dynamic>> resultData = [];
 
             for (int i = 0; i < questionWidgets.length; i++) {
               Map<String, dynamic> result = {
-                'Soru Sayısı': questionWidgets[i].questionNumber,
-                'konu': questionWidgets[i].selectedOption,
-                'Değer': questionWidgets[i].greenButtonSelected ? '1' : '0',
+                'questionNumber': questionWidgets[i].questionNumber,
+                'selectedOption': questionWidgets[i].selectedOption,
+                'result': questionWidgets[i].greenButtonSelected ? '1' : '0',
               };
               resultData.add(result);
             }
 
-            FirebaseFirestore.instance.collection('Sonuç TYT Din').add({
+            FirebaseFirestore.instance.collection('Sonuc Deneme').add({
               'timestamp': DateTime.now(),
               'results': resultData,
             });
@@ -137,9 +131,8 @@ class _QuestionListState extends State<QuestionList> {
               print('Soru ${i + 1}: ${questionWidgets[i].selectedOption} ${questionWidgets[i].greenButtonSelected ? '1' : '0'}');
             }
           },
-          child: Text('Kaydet'),
+          child: Text('Sonuçları Göster'),
         ),
-
         ElevatedButton(
           onPressed: () {
             analyzeResults();
@@ -148,10 +141,14 @@ class _QuestionListState extends State<QuestionList> {
         ),
         ElevatedButton(
           onPressed: () {
-            fetchAllResults();
-            printAllResults();
+            List<Map<String, dynamic>> wrongResults = allResults.where((result) => result['result'] == '0').toList();
+
+            print('Yanlış İşaretlenmiş Sorular:');
+            for (var result in wrongResults) {
+              print('Soru ${result['questionNumber']}: ${result['selectedOption']}');
+            }
           },
-          child: Text('Tüm Sonuçları Göster'),
+          child: Text('Yanlış İşaretlenmiş Soruları Göster'),
         ),
       ],
     );
@@ -221,16 +218,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               });
             },
             icon: Icon(Icons.close, color: Colors.red),
-          ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                textBackgroundColor = Colors.white;
-                widget.greenButtonSelected = false;
-                widget.redButtonSelected = false;
-              });
-            },
-            icon: Icon(Icons.restore, color: Colors.blue),
           ),
         ],
       ),
