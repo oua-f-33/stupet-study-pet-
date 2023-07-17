@@ -22,7 +22,7 @@ F-33
 - Zeliha Kızılkaya - Developer
 - Hikmet Topak - Product Owner/Developer
 - Gökçe Aycı - Scrum Master/Developer/Designer
-- Ceyda Depeharman - Developer
+- Ceyda Depeharman - Developer/Designer
 
 ## Ürün İsmi 🐾
 Stupet (Study Pet) 
