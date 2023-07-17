@@ -192,8 +192,8 @@ https://trello.com/b/4nUZifWG/f33-sprint-3
 - Home Page:
  - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/012083e0-e835-4173-86fc-d356521f430d" width=30% height=30%>
  - Splash Screen:
-  - Video için resmin üzerine tıklayın 
-  - [<img src="https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/143e6a89-ba6b-4829-8acb-ea6e0137221c" width="30%">](https://youtube.com/shorts/LD8JB3vxiY4 "Now in Android: 55")
+    - Video için resmin üzerine tıklayın 
+  - [<img src="https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/143e6a89-ba6b-4829-8acb-ea6e0137221c" width="30%">](https://youtube.com/shorts/LD8JB3vxiY4)
 - Analiz Page:
  - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/fdc1c71f-e9a2-46ac-b029-9e703460337b" width=30% height=30%>
 - Analiz Page1:
