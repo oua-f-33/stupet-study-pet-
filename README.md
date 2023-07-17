@@ -200,6 +200,12 @@ https://trello.com/b/4nUZifWG/f33-sprint-3
  - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/6c0bdfdf-f4ee-4e00-882a-ccf50badd8eb" width=30% height=30%>
 - Analiz Page2:
  - <img src = " " width=30% height=30%>
+ - Konu Takibi:
+ - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/e54f7c34-d0ae-418f-9fbd-b76fe657403f" width=30% height=30%>
+ - Konu Takibi 2:
+ - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/6ef4e846-10d2-4436-a6fe-192b557cb627" width=30% height=30%>
+  - Konu Takibi 3:
+ - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/f27adf99-c0f4-4216-a0a2-47521076e1ba" width=30% height=30%>
  - To-do Page:
  - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/147e5a75-3373-4f20-90ed-36be5c0d391b" width=30% height=30%>
  - Geri Sayım Page:
@@ -209,7 +215,7 @@ https://trello.com/b/4nUZifWG/f33-sprint-3
  - Deneme Verileri 2:
  - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/3f39696d-8b9e-4070-ba79-54261cdf613e" width=30% height=30%>
  - Deneme Verileri 3:
-- <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/34412795-d9da-4a6b-8c99-64dc8e3ca573" width=30% height=30%>
+- <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/89e12e12-2fd2-49d4-ab7d-3946c756bff1" width=30% height=30%>
 - Profile Page:
 - <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/3689feac-b259-42bc-a1ed-4bed4882893f" width=30% height=30%>
 - Edit Profile Page:
