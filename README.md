@@ -18,7 +18,7 @@ F-33
 # Ürün İle İlgili Bilgiler
 
 ## Takım Üyeleri 👩‍💻👨‍💻
-- Ahmet Melik Alihocagil - Developer/Designer
+- Ahmet Melik Alihocagil 
 - Zeliha Kızılkaya - Developer
 - Hikmet Topak - Product Owner/Developer
 - Gökçe Aycı - Scrum Master/Developer/Designer
