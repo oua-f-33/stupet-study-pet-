@@ -1,3 +1,6 @@
+# Not :
+Uygulamanın son hali **[Stupet](https://github.com/oua-f-33/stupet-study-pet-/tree/stupet)** branchindedir.
+
 <img src = "https://github.com/oua-f-33/stupet-study-pet-/assets/77845105/50085601-394d-4857-a2e4-caea7a4b41cd" width=20% height=20%>
 
 ## İçindekiler 📝
